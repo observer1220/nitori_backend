@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const Product = require("./models/product");
+const Customer = require("./models/customer");
 const sequelize = require("./config/database");
 
 const app = express();
@@ -91,6 +92,26 @@ app.delete("/products/:id", async (req, res) => {
     } else {
       res.status(404).json({ error: "Product not found" });
     }
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Create 顧客
+app.post("/customers", async (req, res) => {
+  try {
+    const customer = await Customer.create(req.body);
+    res.status(201).json(customer);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Read 所有顧客
+app.get("/customers", async (req, res) => {
+  try {
+    const customers = await Customer.findAll();
+    res.json(customers);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
