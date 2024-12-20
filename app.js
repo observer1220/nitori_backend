@@ -97,7 +97,7 @@ app.delete("/products/:id", async (req, res) => {
   }
 });
 
-// Create 顧客
+// Create Customer
 app.post("/customers", async (req, res) => {
   try {
     const customer = await Customer.create(req.body);
@@ -107,7 +107,7 @@ app.post("/customers", async (req, res) => {
   }
 });
 
-// Read 所有顧客
+// Read All Customers
 app.get("/customers", async (req, res) => {
   try {
     const customers = await Customer.findAll();
