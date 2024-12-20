@@ -30,3 +30,5 @@ const Customer = sequelize.define(
     timestamps: false,
   }
 );
+
+module.exports = Customer;
