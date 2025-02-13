@@ -97,6 +97,16 @@ app.delete("/products/:id", async (req, res) => {
   }
 });
 
+// Create Categories
+app.post("/categories", async (req, res) => {
+  try {
+    const category = await Category.create(req.body);
+    res.status(201).json(category);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Create Customer
 // app.post("/customers", async (req, res) => {
 //   try {
