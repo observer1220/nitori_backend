@@ -1,5 +1,5 @@
-import Product from "./product";
-import Category from "./category";
-import Supplier from "./supplier";
+const Product = require("./product");
+const Category = require("./category");
+const Supplier = require("./supplier");
 
 export { Product, Category, Supplier };
