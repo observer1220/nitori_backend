@@ -23,13 +23,15 @@ const Product = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    category: {
-      type: DataTypes.STRING(50),
+    status: {
+      type: DataTypes.STRING(20),
       allowNull: false,
     },
-    status: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
+    category_id: {
+      type: DataTypes.BIGINT,
+    },
+    supplier_id: {
+      type: DataTypes.BIGINT,
     },
   },
   {

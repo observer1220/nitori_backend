@@ -98,24 +98,24 @@ app.delete("/products/:id", async (req, res) => {
 });
 
 // Create Customer
-app.post("/customers", async (req, res) => {
-  try {
-    const customer = await Customer.create(req.body);
-    res.status(201).json(customer);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// app.post("/customers", async (req, res) => {
+//   try {
+//     const customer = await Customer.create(req.body);
+//     res.status(201).json(customer);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 // Read All Customers
-app.get("/customers", async (req, res) => {
-  try {
-    const customers = await Customer.findAll();
-    res.json(customers);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// app.get("/customers", async (req, res) => {
+//   try {
+//     const customers = await Customer.findAll();
+//     res.json(customers);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 // 啟動伺服器
 const PORT = process.env.PORT || 3000;
