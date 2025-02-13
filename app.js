@@ -3,8 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const Product = require("./models/product");
-const Customer = require("./models/customer");
+// const Customer = require("./models/customer");
 const sequelize = require("./config/database");
+const Category = require("./models/categories");
 
 const app = express();
 app.use(bodyParser.json());
