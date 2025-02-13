@@ -9,5 +9,5 @@ git push origin main
 ssh root@64.176.37.84 << 'EOF'
   cd nitori_furniture
   git pull
-  docker compose up -d
+  docker compose up --build -d
 EOF

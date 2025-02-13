@@ -2,10 +2,12 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const Product = require("./models/product");
-// const Customer = require("./models/customer");
 const sequelize = require("./config/database");
-const Category = require("./models/categories");
+
+const productRouter = require("./routes/product");
+const categoryRouter = require("./routes/category");
+const supplierRouter = require("./routes/supplier");
+const customerRouter = require("./routes/customer");
 
 const app = express();
 app.use(bodyParser.json());
@@ -32,101 +34,10 @@ sequelize
 sequelize.sync();
 
 // Create 產品
-app.post("/products", async (req, res) => {
-  try {
-    const product = await Product.create(req.body);
-    res.status(201).json(product);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Read 所有產品
-app.get("/products", async (req, res) => {
-  try {
-    const products = await Product.findAll();
-    res.json(products);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Read 單一產品
-app.get("/products/:id", async (req, res) => {
-  try {
-    const product = await Product.findByPk(req.params.id);
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404).json({ error: "Product not found" });
-    }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Update 產品
-app.put("/products/:id", async (req, res) => {
-  try {
-    const [updated] = await Product.update(req.body, {
-      where: { id: req.params.id },
-    });
-    if (updated) {
-      const updatedProduct = await Product.findByPk(req.params.id);
-      res.json(updatedProduct);
-    } else {
-      res.status(404).json({ error: "Product not found" });
-    }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Delete 產品
-app.delete("/products/:id", async (req, res) => {
-  try {
-    const deleted = await Product.destroy({
-      where: { id: req.params.id },
-    });
-    if (deleted) {
-      res.status(204).json();
-    } else {
-      res.status(404).json({ error: "Product not found" });
-    }
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Create Categories
-app.post("/categories", async (req, res) => {
-  try {
-    const category = await Category.create(req.body);
-    res.status(201).json(category);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Create Customer
-// app.post("/customers", async (req, res) => {
-//   try {
-//     const customer = await Customer.create(req.body);
-//     res.status(201).json(customer);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-
-// Read All Customers
-// app.get("/customers", async (req, res) => {
-//   try {
-//     const customers = await Customer.findAll();
-//     res.json(customers);
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
+app.use("/products", productRouter);
+app.use("/categories", categoryRouter);
+app.use("/suppliers", supplierRouter);
+app.use("/customers", customerRouter);
 
 // 啟動伺服器
 const PORT = process.env.PORT || 3000;
