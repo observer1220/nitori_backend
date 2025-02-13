@@ -12,4 +12,14 @@ router.post("/suppliers", async (req, res) => {
   }
 });
 
+// Read All Suppliers
+router.get("/suppliers", async (req, res) => {
+  try {
+    const suppliers = await Supplier.findAll();
+    res.json(suppliers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
