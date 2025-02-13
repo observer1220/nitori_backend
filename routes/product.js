@@ -2,7 +2,7 @@ const express = require("express");
 const { Product } = require("../models");
 const router = express.Router();
 
-router.post("/products", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const product = await Product.create(req.body);
     res.status(201).json(product);
@@ -12,7 +12,7 @@ router.post("/products", async (req, res) => {
 });
 
 // Read 所有產品
-router.get("/products", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const products = await Product.findAll();
     res.json(products);
@@ -22,7 +22,7 @@ router.get("/products", async (req, res) => {
 });
 
 // Read 單一產品
-router.get("/products/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id);
     if (product) {
@@ -36,7 +36,7 @@ router.get("/products/:id", async (req, res) => {
 });
 
 // Update 產品
-router.put("/products/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const [updated] = await Product.update(req.body, {
       where: { id: req.params.id },
@@ -53,7 +53,7 @@ router.put("/products/:id", async (req, res) => {
 });
 
 // Delete 產品
-router.delete("/products/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const deleted = await Product.destroy({
       where: { id: req.params.id },

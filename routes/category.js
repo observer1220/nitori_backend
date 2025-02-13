@@ -3,7 +3,7 @@ const { Category } = require("../models");
 const router = express.Router();
 
 // Create Categories
-router.post("/categories", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const category = await Category.create(req.body);
     res.status(201).json(category);
@@ -13,7 +13,7 @@ router.post("/categories", async (req, res) => {
 });
 
 // Read All Categories
-router.get("/categories", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const categories = await Category.findAll();
     res.json(categories);
