@@ -7,6 +7,7 @@ const sequelize = require("./config/database");
 const productRouter = require("./routes/product");
 const categoryRouter = require("./routes/category");
 const supplierRouter = require("./routes/supplier");
+const warehouseRouter = require("./routes/warehouse");
 const customerRouter = require("./routes/customer");
 
 const app = express();
@@ -37,6 +38,7 @@ sequelize.sync();
 app.use("/products", productRouter);
 app.use("/categories", categoryRouter);
 app.use("/suppliers", supplierRouter);
+app.use("/warehouse", warehouseRouter);
 app.use("/customers", customerRouter);
 
 // 啟動伺服器
