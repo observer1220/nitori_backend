@@ -2,6 +2,7 @@ const express = require("express");
 const { Product } = require("../models");
 const router = express.Router();
 
+// Create product
 router.post("/", async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -11,7 +12,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Read 所有產品
+// Read all products
 router.get("/", async (req, res) => {
   try {
     const products = await Product.findAll();
@@ -21,7 +22,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Read 單一產品
+// Read single product
 router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id);
@@ -35,7 +36,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Update 產品
+// Update product
 router.put("/:id", async (req, res) => {
   try {
     const [updated] = await Product.update(req.body, {
@@ -52,7 +53,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// Delete 產品
+// Delete product
 router.delete("/:id", async (req, res) => {
   try {
     const deleted = await Product.destroy({
