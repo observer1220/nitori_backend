@@ -8,6 +8,7 @@ const productRouter = require("./routes/product");
 const categoryRouter = require("./routes/category");
 const supplierRouter = require("./routes/supplier");
 const warehouseRouter = require("./routes/warehouse");
+const orderRouter = require("./routes/order");
 const customerRouter = require("./routes/customer");
 
 const app = express();
@@ -39,6 +40,7 @@ app.use("/products", productRouter);
 app.use("/categories", categoryRouter);
 app.use("/suppliers", supplierRouter);
 app.use("/warehouses", warehouseRouter);
+app.use("/orders", orderRouter);
 app.use("/customers", customerRouter);
 
 // 啟動伺服器
