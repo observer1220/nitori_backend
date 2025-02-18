@@ -9,6 +9,10 @@ const Order = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+    customer_id: {
+      type: DataTypes.BIGINT,
+      allowNull: false,
+    },
     order_date: {
       type: DataTypes.DATE,
       allowNull: false,
