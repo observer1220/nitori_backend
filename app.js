@@ -38,7 +38,7 @@ sequelize.sync();
 app.use("/products", productRouter);
 app.use("/categories", categoryRouter);
 app.use("/suppliers", supplierRouter);
-app.use("/warehouse", warehouseRouter);
+app.use("/warehouses", warehouseRouter);
 app.use("/customers", customerRouter);
 
 // 啟動伺服器
