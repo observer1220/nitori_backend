@@ -4,6 +4,7 @@ const Supplier = require("./supplier");
 const Warehouse = require("./warehouse");
 const Order = require("./order");
 const Customer = require("./customer");
+const Employee = require("./employee");
 
 module.exports = {
   Product,
@@ -12,4 +13,5 @@ module.exports = {
   Warehouse,
   Order,
   Customer,
+  Employee,
 };
