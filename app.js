@@ -10,6 +10,7 @@ const supplierRouter = require("./routes/supplier");
 const warehouseRouter = require("./routes/warehouse");
 const orderRouter = require("./routes/order");
 const customerRouter = require("./routes/customer");
+const employeeRouter = require("./routes/employee");
 
 const app = express();
 app.use(bodyParser.json());
@@ -42,6 +43,7 @@ app.use("/suppliers", supplierRouter);
 app.use("/warehouses", warehouseRouter);
 app.use("/orders", orderRouter);
 app.use("/customers", customerRouter);
+app.use("/employees", employeeRouter);
 
 // 啟動伺服器
 const PORT = process.env.PORT || 3000;
