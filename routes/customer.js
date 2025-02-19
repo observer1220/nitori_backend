@@ -3,7 +3,7 @@ const { Customer } = require("../models");
 const router = express.Router();
 
 // Create Customer
-router.post("/customers", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const customer = await Customer.create(req.body);
     res.status(201).json(customer);
@@ -13,7 +13,7 @@ router.post("/customers", async (req, res) => {
 });
 
 // Read All Customers
-router.get("/customers", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const customers = await Customer.findAll();
     res.json(customers);
