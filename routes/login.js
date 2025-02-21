@@ -22,13 +22,12 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Change Name and Password: 待驗證
+// Change Password
 router.put("/:id", async (req, res) => {
   try {
     const employee = await Employee.findByPk(req.params.id);
     if (employee) {
       await employee.update({
-        name: req.body.name,
         passwd: req.body.passwd,
       });
       res.json(employee);
