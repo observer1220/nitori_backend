@@ -1,5 +1,5 @@
 const express = require("express");
-const { Employee } = require("../models");
+const { Employee } = require("../models/EmployeeModel");
 const router = express.Router();
 
 // Create Employee

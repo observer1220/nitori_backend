@@ -1,5 +1,5 @@
 const express = require("express");
-const { Warehouse } = require("../models");
+const { Warehouse } = require("../models/WarehouseModel");
 const router = express.Router();
 
 // Create Warehouse
