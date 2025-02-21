@@ -21,6 +21,10 @@ const Employee = sequelize.define(
       type: DataTypes.BIGINT,
       allowNull: false,
     },
+    passwd: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
   },
   {
     tableName: "employees",

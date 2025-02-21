@@ -11,6 +11,7 @@ const warehouseRouter = require("./routes/warehouse");
 const orderRouter = require("./routes/order");
 const customerRouter = require("./routes/customer");
 const employeeRouter = require("./routes/employee");
+const loginRouter = require("./routes/login");
 
 const app = express();
 app.use(bodyParser.json());
@@ -36,7 +37,6 @@ sequelize
 // 同步模型
 sequelize.sync();
 
-// Create 產品
 app.use("/products", productRouter);
 app.use("/categories", categoryRouter);
 app.use("/suppliers", supplierRouter);
@@ -44,6 +44,7 @@ app.use("/warehouses", warehouseRouter);
 app.use("/orders", orderRouter);
 app.use("/customers", customerRouter);
 app.use("/employees", employeeRouter);
+app.use("/login", loginRouter);
 
 // 啟動伺服器
 const PORT = process.env.PORT || 3000;
