@@ -23,8 +23,12 @@ router.post("/", async (req, res) => {
       return res.status(401).json({ error: "密碼錯誤" });
     }
 
-    // 如果密碼正確，回傳使用者資訊
-    res.json(employee);
+    // 如果密碼正確，回傳使用者資訊(不包含密碼)
+    res.json({
+      id: employee.id,
+      name: employee.name,
+      email: employee.email,
+    });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
