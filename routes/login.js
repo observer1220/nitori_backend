@@ -27,7 +27,8 @@ router.post("/", async (req, res) => {
     res.json({
       id: employee.id,
       name: employee.name,
-      email: employee.email,
+      position: employee.position,
+      warehouse_id: employee.warehouse_id,
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
