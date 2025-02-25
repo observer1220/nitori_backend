@@ -1,6 +1,7 @@
 const express = require("express");
 const Employee = require("../models/EmployeeModel");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 
 // Employee Login
 router.post("/", async (req, res) => {
@@ -26,14 +27,19 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const employee = await Employee.findByPk(req.params.id);
-    if (employee) {
-      await employee.update({
-        passwd: req.body.passwd,
-      });
-      res.json(employee);
-    } else {
-      res.status(404).json({ error: "Employee not found!" });
+    if (!employee) {
+      return res.status(404).json({ error: "Employee not found!" });
     }
+
+    // 先檢查是否有傳入 passwd，避免不必要的加密
+    let updatedData = { ...req.body };
+    if (req.body.passwd) {
+      const hashedPassword = await bcrypt.hash(req.body.passwd, SALT_ROUNDS);
+      updatedData.passwd = hashedPassword;
+    }
+
+    await employee.update(updatedData);
+    res.json(employee);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
