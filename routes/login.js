@@ -8,18 +8,23 @@ const SALT_ROUNDS = 10; // 定義加密強度
 // Employee Login
 router.post("/", async (req, res) => {
   try {
+    // 先根據 name 查詢 employee
     const employee = await Employee.findOne({
-      where: {
-        name: req.body.name,
-        passwd: req.body.passwd,
-      },
+      where: { name: req.body.name },
     });
 
-    if (employee) {
-      res.json(employee);
-    } else {
-      res.status(404).json({ error: "Employee not found!" });
+    if (!employee) {
+      return res.status(404).json({ error: "Employee not found!" });
     }
+
+    // 驗證密碼
+    const isMatch = await bcrypt.compare(req.body.passwd, employee.passwd);
+    if (!isMatch) {
+      return res.status(401).json({ error: "密碼錯誤" });
+    }
+
+    // 如果密碼正確，回傳使用者資訊
+    res.json(employee);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
