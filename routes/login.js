@@ -3,6 +3,8 @@ const Employee = require("../models/EmployeeModel");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 
+const SALT_ROUNDS = 10; // 定義加密強度
+
 // Employee Login
 router.post("/", async (req, res) => {
   try {
